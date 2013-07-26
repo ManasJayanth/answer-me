@@ -21,15 +21,15 @@
                     </ul>
                 </div>
             </div>
-            <form id="question" method="post" action="getquestion.php">
+            <form id="question" method="post" action="php/getquestion.php">
                 <legend>
                 Question
                 </legend>
                 <label>Text</label>
-                <textarea class="input-block-level" rows="4" placeholder="Enter your question here..." name="stabout"> </textarea>
+                <textarea class="input-block-level" rows="4" placeholder="Enter your question here..." name="question"> </textarea>
                 <label>Number of options
                 <span>
-                    <select class="span1 btn" name="noQ" id="noQ">
+                    <select class="span1 btn" name="nChoices" id="noQ">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -44,7 +44,7 @@
             </form>
             <hr> 
             <footer>
-                <span class="pull-right"><a href="index.html">Back Home</a></span>
+                <span class="pull-right"><a href="index.php">Back Home</a></span>
                 <span>© 2013 answerMe </span>
             </footer>
         </div>
