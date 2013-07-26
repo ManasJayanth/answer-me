@@ -21,7 +21,7 @@
                     </ul>
                 </div>
             </div>
-            <form>
+            <form id="question" method="post" action="getquestion.php">
                 <legend>
                 Question
                 </legend>
@@ -29,10 +29,7 @@
                 <textarea class="input-block-level" rows="4" placeholder="Enter your question here..." name="stabout"> </textarea>
                 <label>Number of options
                 <span>
-                    <script src="http://code.jquery.com/jquery.js">
-
-                    </script>
-                    <select class="span1 btn" name="branch" onchange="noOfChoices();">
+                    <select class="span1 btn" name="noQ" id="noQ">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -43,6 +40,7 @@
                 </span>
                 </label>
                 <div id="choices"></div>
+                <div id="answer-label"></div>
             </form>
             <hr> 
             <footer>
@@ -51,5 +49,7 @@
             </footer>
         </div>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.6.2.min.js"></script>
+    <script src="js/myscripts.js"></script>
     </body>
     </html>
