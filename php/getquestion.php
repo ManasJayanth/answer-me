@@ -41,9 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 $question = $_POST["question"];
 $noChoices = $_POST["nChoices"];
 $choices = array('1' => '','2' => '','3' => '','4' => '','5' => '','6' => '');
-for($i = 1; $i <= $nQuestions; ++$i) {
-	$choices[$i] = $_POST["C1"];
+for($i = 1; $i <= $noChoices; ++$i) {
+	$choices[$i] = $_POST["C".$i];
 }
+
 $answer = $_POST["correctAnswer"];
 
 $database = "answerMe"; 
