@@ -1,0 +1,13 @@
+#box {
+	padding: 50px;
+	box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+	background: #fcfcfc;
+}
+
+#box p {
+	font-size: 20px;
+	text-align: center;
+}
+#box h1 {
+	text-align: center;
+}
