@@ -12,6 +12,9 @@ $(document).ready(function(){
 						'<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a></div></div>';		
 		$("#imgsource").append(appendEle);
 	});
+	$('#imgno').bind('click',function(){
+		$("#imgsource").replaceWith('<div id="imgsource"> </div>');
+	});
 	$("#noQ").bind('change',function() { 
 		var nChoices = $(this).val();
 		$("#choices").replaceWith('<div id="choices"> </div>');
