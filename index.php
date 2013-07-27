@@ -21,12 +21,22 @@
                     </ul>
                 </div>
             </div>
-            <form id="question" method="post" action="php/getquestion.php">
+            <form id="question" method="post" action="php/getquestion.php" enctype='multipart/form-data'>
                 <legend>
                 Question
                 </legend>
                 <label>Text</label>
                 <textarea class="input-block-level" rows="4" placeholder="Enter your question here..." name="question"> </textarea>
+                <label>Image?</label>
+                <label class="radio inline">
+                <input id="imgyes" type="radio" name="img" value="yes">
+                <span class="radioOptions">Yes</span>
+                </label>
+                <label class="radio inline">
+                <input id="imgno" type="radio" name="img" value="no" checked>
+                <span class="radioOptions">No</span>
+                </label>
+                <div id="imgsource"></div>
                 <label>Number of options
                 <span>
                     <select class="span1 btn" name="nChoices" id="noQ">
