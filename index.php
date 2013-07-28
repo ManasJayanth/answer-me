@@ -65,7 +65,10 @@
                     </select>
                 </span>
                 </label>
-                <div id="choices"></div>
+                <div id="choices">
+                    <label>Choice 1</label>
+                    <textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C1"> </textarea>
+                </div>
                 <div id="answer-label"></div>
             </form>
             <hr> 
