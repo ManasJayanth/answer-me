@@ -7,7 +7,7 @@ $(document).ready(function(){
 						'<span class="btn btn-file">' +
 							'<span class="fileupload-new">Select image</span>' +
 								'<span class="fileupload-exists">Change</span>' +
-								'<input type="file" />' +
+								'<input type="file" name="filename"/>' +
 							'</span>' +
 						'<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a></div></div>';		
 		$("#imgsource").append(appendEle);

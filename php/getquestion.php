@@ -1,4 +1,5 @@
 <?php
+@include('serverspecific.php');
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 ?>
 <!DOCTYPE html><html>
@@ -46,12 +47,15 @@ for($i = 1; $i <= $noChoices; ++$i) {
 }
 
 $answer = $_POST["correctAnswer"];
-
-$database = "answerMe"; 
-$server = "127.0.0.1";
-$db_user = "root";
-$db_pass = "mysqlmypass";
-
+$fname = ""; //filename
+$imgpresent = false; 
+if ($_FILES)
+{
+  $fname = $_FILES['filename']['name'];
+  $fname = $parentDir . 'Qimgs/' . $fname;
+  move_uploaded_file($_FILES['filename']['tmp_name'], $fname);
+  $imgpresent = true;
+}
 try {
   $testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
   $testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -69,6 +73,11 @@ try {
   	$pstatement = $testh->prepare($sql);
   	$param = array(':qno' => $num, ':cno' => $i, ':choice' => $choices[$i]);
   	$success = $pstatement->execute($param);
+  }
+  if($imgpresent) {
+    $sql = "insert into qImgs values (:qno,:img)";
+    $pstatement = $testh->prepare($sql);
+    $success = $pstatement->execute(array(':qno' => $num,':img' => $fname));
   }
 }
 catch(PDOException $e)

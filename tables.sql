@@ -15,3 +15,9 @@ create table choices(
 	foreign key(qno) references questions(qno),
 	choice varchar(100) not null
 );
+
+create table qImgs(
+	qno int,
+	foreign key(qno) references questions(qno),
+	imgname varchar(100)
+);
