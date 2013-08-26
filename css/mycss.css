@@ -11,6 +11,11 @@ form {
 label {
 	font-weight: bold;
 }
+
+input[type="text"] {
+	height: 30px;
+}
 .radioOptions {
 	font-weight: normal;
+	margin-top: -10px;
 }

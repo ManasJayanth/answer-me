@@ -9,16 +9,18 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/mycss.css" rel="stylesheet" media="screen">
     <link href="css/mycsslib.css" rel="stylesheet" media="screen">
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+    </script>
     </head>
     <body>
         <div class="container">
             <div class="navbar">
                 <div class="navbar-inner">
                     <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="createtest.html">Create Test</a></li>
+                        <li><a href="php/viewdb.php">View Database</a></li>
+                        <li><a href="php/taketest.php">Take Test</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,20 +40,6 @@
                 <span class="radioOptions">No</span>
                 </label>
                 <div id="imgsource">
-                    
-<!-- <div class="fileupload fileupload-new" data-provides="fileupload">
-<div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
-<div>
-<span class="btn btn-file">
-    <span class="fileupload-new">Select image</span>
-    <span class="fileupload-exists">Change</span>
-    <input type="file" />
-</span>
-<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-</div>
-</div> -->
-
-
                 </div>
                 <label>Number of options
                 <span>
@@ -77,7 +65,7 @@
                 <span>© 2013 answerMe </span>
             </footer>
         </div>
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/jquery-1.6.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/myscripts.js"></script>
     </body>

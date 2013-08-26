@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         <div class="navbar">
             <div class="navbar-inner">
                 <ul class="nav">
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                  <li class="active"><a href="../index.php">Home</a></li>
+                  <li><a href="../createtest.html">Create Test</a></li>
+                  <li><a href="viewdb.php">View Database</a></li>
                 </ul>
             </div>
         </div>

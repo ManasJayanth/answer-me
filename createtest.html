@@ -1,0 +1,81 @@
+<html lang="en">
+<html>
+<head>
+<title>answerMe &middot; Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/mycss.css" rel="stylesheet" media="screen">
+<link href="css/mycsslib.css" rel="stylesheet" media="screen">
+<script type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <ul class="nav">
+                    <li><a href="index.php">Home</a></li>
+                    <li class="active"><a href="createtest.html">Create Test</a></li>
+                    <li><a href="php/viewdb.php">View Database</a></li>
+                    <li><a href="php/taketest.php">Take Test</a></li>
+                </ul>
+                </ul>
+            </div>
+        </div>
+
+            <form id="testDetails" class="form-horizontal">
+        	<fieldset>
+            <legend>
+            Test Details...
+            </legend>
+            <div class="control-group">
+                <label class="control-label">Test Name</label>
+                <div class="controls">
+                    <input class="input-xlarge"type="text" id="tname" name="tname" placeholder="Name of the test">
+                </div>
+            </div>
+            <div class="control-group">
+            	<label class="control-label">Number of Questions</label>
+            	<div class="controls">
+            		<input class="input-xlarge"type="text" id="noq" name="noq" placeholder="How many question in a given test?">
+            	</div>
+        	</div>
+
+        	<div class="control-group">
+            	<label class="control-label">Negative Marking</label>
+            	<div class="controls">
+            		<input id="negyes" type="radio" name="neg" value="yes">
+            		Yes
+            	</div>            
+            	<div class="controls">
+            		<input id="negno" type="radio" name="neg" value="no" checked>
+            		No
+            	</div>
+        	</div>
+
+            <div class="control-group">
+            	<label class="control-label">Time Duration</label>
+            	<div class="controls">
+            		<input class="input-xlarge"type="text" id="time" name="time" placeholder="Enter the time duration in minutes">
+            	</div>
+            </div>
+            <button id="done" class="btn btn-block btn-primary" type="button" >Done</button>
+        	</fieldset>
+            <hr>
+            <div id="details">
+            <!-- Ajax will fetch the questions and display it here -->
+            </div>
+        </form>
+        <hr>
+        <footer>
+            <span class="pull-right"><a href="index.php">Back Home</a></span>
+            <span>© 2013 answerMe </span>
+        </footer>
+    </div>
+<script src="js/jquery-1.6.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/createtest.js"></script>
+</body>
+</html>
