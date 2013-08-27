@@ -12,7 +12,6 @@ $sql = "select * from questions";
 $pstatement = $testh->prepare($sql);
 $success = $pstatement->execute();
 $result = $pstatement->fetchAll();
-$num = 10;
 ?>
 <html lang="en">
 <html>

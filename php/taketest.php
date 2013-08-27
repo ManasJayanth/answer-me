@@ -38,6 +38,17 @@ try {
     echo $e->getMessage();
 }
 
+$sql = "SELECT * FROM test WHERE testid = :testid";
+$pstatement = $testh->prepare($sql);
+$result = "";
+try {
+    $success = $pstatement->execute(array(':testid' => $_SESSION['testid']));
+    $test = $pstatement->fetchAll();
+} catch (PDOException $e) {
+    echo "Following error was encountered <br />";
+    echo $e->getMessage();
+}
+$Qs = explode(";", $test[0]['questions']);
 ?>
 <html lang="en">
 <html>
@@ -60,34 +71,62 @@ try {
         <div id="text"> Time left </div>
         <div id="time">--</div>
       </div>
-      <form class="form-signin" id="test" action="collectdoublebass.php" method="post">
+      <form class="form-signin" id="test" action="eval.php" method="post">
         <?php
-        $i = 1;
-        while($i <= 10) {
+            try {
+                for ($j=0; $j < sizeof($Qs); $j++) { 
+                    $sql = "SELECT * FROM questions WHERE qno = :qno";
+                    $pstatement = $testh->prepare($sql);
+                    $success = $pstatement->execute(array(':qno' => $Qs[$j]));
+                    $result = $pstatement->fetchAll();
         ?>
-
         <hr>
-        <label> <?php echo $result[$i]['q']; ?> </label>
+        <label>
+        <?php
+                    echo $result[0]['qtext'];
+                    /********** Checking for Images ******************/
+                    $sql = "SELECT * FROM qImgs WHERE qno = :qno";
+                    $pstatement = $testh->prepare($sql);
+                    try {
+                            $success = $pstatement->execute(array(':qno' => $Qs[$j]));
+                            $img = $pstatement->fetchAll();
+                    } catch (PDOException $e) {
+                        echo "Following error was encountered <br />";
+                        echo $e->getMessage();
+                    }
+                    for ($k=0; $k < sizeof($img); $k++) { 
+        ?>
+        <div id="img">
+            <img class="img-polaroid" src= " <?php echo '../' . $img[$k]['imgname']; ?>" height="200" width="200"/>
+        </div>
+        <?php
+                    }
+                    /********** Retrieving all the choices ****************/
+                    $sql = "SELECT * FROM choices WHERE qno = :qno";
+                    $pstatement = $testh->prepare($sql);
+                    try {
+                            $success = $pstatement->execute(array(':qno' => $Qs[$j]));
+                            $choices = $pstatement->fetchAll();
+                    } catch (PDOException $e) {
+                        echo "Following error was encountered <br />";
+                        echo $e->getMessage();
+                    }
+                    for ($k=0; $k < sizeof($choices); $k++) { 
+        ?>
+        </label>
         <label class="radio radioOptions">
         <input type="radio" name="Q1" value="1" checked>
-        <?php echo $result[$i]['c1']; ?>
+        <?php 
+                        echo $choices[$k]['choice']; 
+        ?>
         </label>
-        <label class="radio radioOptions">
-        <input type="radio" name="Q1" value="2">
-        <?php echo $result[$i]['c2']; ?>
-        </label>
-        <label class="radio radioOptions">
-        <input type="radio" name="Q1" value="3">
-        <?php echo $result[$i]['c3']; ?>
-        </label>
-        <label class="radio radioOptions">
-        <input type="radio" name="Q1" value="4">
-        <?php echo $result[$i]['c4']; ?>
-        </label>
-
         <?php
-        ++$i;
-        }
+                    }
+                }
+            } catch (PDOException $e) {
+                echo "Following error was encountered <br />";
+                echo $e->getMessage();
+            }
         ?>
         <hr> 
         <footer>
@@ -98,7 +137,7 @@ try {
 <script src="../js/jquery1.10.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
-var sec = <?php echo $timelimit; ?>;
+var sec = <?php echo $test[0]['timelimit']; ?>;
 </script>
 <script src="../js/taketest.js"></script>
 </body>

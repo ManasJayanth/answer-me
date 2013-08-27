@@ -23,7 +23,7 @@ create table qImgs(
 );
 
 
-drop table test;
+
 create table test(
 	testid int primary key AUTO_INCREMENT,
 	testname varchar(50),

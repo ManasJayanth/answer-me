@@ -53,3 +53,6 @@ font-weight: normal;
 .container {
 	max-width: 720px;
 }
+#img {
+	margin: 5px 100px 5px auto;
+}

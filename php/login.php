@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			session_start();
 			$_SESSION['login'] = "1";
 			$_SESSION['loginid'] = $loginid;
+			$_SESSION['testid'] = $testid;
 			// echo "success";
 			header ("Location: taketest.php");
 		}

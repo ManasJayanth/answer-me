@@ -65,7 +65,7 @@
                 <span>© 2013 answerMe </span>
             </footer>
         </div>
-    <script src="js/jquery-1.6.2.min.js"></script>
+    <script src="js/jquery1.10.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/myscripts.js"></script>
     </body>
