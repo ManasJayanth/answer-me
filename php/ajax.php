@@ -46,13 +46,19 @@ function createTest($data) {
 	$pstatement = $testh->prepare($sql);
 	$success = $pstatement->execute();
 	$num = $pstatement->fetchColumn();
+
+
+	$res = "unique";
+
 	$Qnos = array();
 	for ($i=0; $i < $totalQs; $i++) { 
 		$temp = (rand() % $num) + 1;
 		$j=0;
 		while($j < sizeof($Qnos)) { 
 			if ($temp == $Qnos[$j]) {
+				$res = "copy";
 				$temp = (rand() % $num) + 1;
+				$j = 0;
 				continue;
 			}
 			$j++;
@@ -67,7 +73,7 @@ function createTest($data) {
 	$pstatement = $testh->prepare($sql);
 	$success = $pstatement->execute();
 	$num = $pstatement->fetchColumn();
-	return 'Your TestID : ' . $num;
+	return 'Your TestID : ' . $num . ":". $res;
 }
 $function = $_POST['function'];    
 $response = array();
