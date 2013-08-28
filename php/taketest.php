@@ -7,26 +7,17 @@ require_once('serverspecific.php');
 $testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
 $testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $testh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-$sql = "SELECT name FROM student WHERE loginid = :loginid";
-$pstatement = $testh->prepare($sql);
-$name = "";
-try {
-    $success = $pstatement->execute(array(':loginid' => $_SESSION['loginid']));
-    $name = $pstatement->fetchColumn();
-} catch (PDOException $e) {
-    echo "Following error was encountered <br />";
-    echo $e->getMessage();
-}
+// $sql = "SELECT name FROM student WHERE loginid = :loginid";
+// $pstatement = $testh->prepare($sql);
+// $name = "";
+// try {
+//     $success = $pstatement->execute(array(':loginid' => $_SESSION['loginid']));
+//     $name = $pstatement->fetchColumn();
+// } catch (PDOException $e) {
+//     echo "Following error was encountered <br />";
+//     echo $e->getMessage();
+// }
 /********* Retrieving Questions *******/
-$result = array();
-$timelimit = 4;
-for ($i=1; $i <= 10; $i++) { 
-    $result[$i]['q'] = "Question " . $i;
-    $result[$i]['c1'] = 'Food ,Travel &amp; Photography';
-    $result[$i]['c2'] = 'Marketing';
-    $result[$i]['c3'] = 'Content Writing';
-    $result[$i]['c4'] = 'Meeting and communicating with new people';
-}
 $sql = "SELECT name FROM student WHERE loginid = :loginid";
 $pstatement = $testh->prepare($sql);
 $name = "";
@@ -115,7 +106,7 @@ $Qs = explode(";", $test[0]['questions']);
         ?>
         </label>
         <label class="radio radioOptions">
-        <input type="radio" name="Q1" value="1" checked>
+        <input type="radio" name="Q<?php echo $j";?>" value="<?php echo $k; ?>">
         <?php 
                         echo $choices[$k]['choice']; 
         ?>

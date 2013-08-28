@@ -52,7 +52,7 @@ function createTest($data) {
 		$j=0;
 		while($j < sizeof($Qnos)) { 
 			if ($temp == $Qnos[$j]) {
-				$temp = rand() % $num;
+				$temp = (rand() % $num) + 1;
 				continue;
 			}
 			$j++;

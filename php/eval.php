@@ -1,6 +1,37 @@
 <?php
+$h = '';
+$p = '';
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 session_start();
+$loginid = $_SESSION['loginid'];
+$testid = $_SESSION['testid'];
 session_destroy();
+$response = array();
+/*** Retrieving Test Details*/
+require_once('serverspecific.php');
+$testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
+$testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$testh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+$h = 'Times Up!';
+$p = 'Your answer has been submitted and is under evaluation';
+/***
+$sql = "SELECT * FROM test WHERE testid = :testid";
+$pstatement = $testh->prepare($sql);
+$result = "";
+try {
+    $success = $pstatement->execute(array(':testid' => $_SESSION['testid']));
+    $test = $pstatement->fetchAll();
+} catch (PDOException $e) {
+    echo "Following error was encountered <br />";
+    echo $e->getMessage();
+}
+$Qs = explode(";", $test[0]['questions']);**/
+}
+else
+{
+    $h = 'Sorry!';
+    $p = 'You tried to acccess this page directly (not supposed to do that)';
+}
 ?>
 <html lang="en">
 <html>
@@ -28,8 +59,8 @@ session_destroy();
             </div>
         </div>
         <div class="box">
-        	<h2> Times Up!</h2>
-        	<p> Your answer has been submitted and is under evaluation </p>
+        	<h2> <?php echo $h;?></h2>
+        	<p> <?php echo $p; ?> </p>
         </div>
         <hr>
         <footer>
