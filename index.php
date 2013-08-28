@@ -29,7 +29,7 @@
                 Question
                 </legend>
                 <label>Text</label>
-                <textarea class="input-block-level" rows="4" placeholder="Enter your question here..." name="question"> </textarea>
+                <textarea class="input-block-level" rows="4" placeholder="Enter your question here..." name="question" id="qtext"> </textarea>
                 <label>Image?</label>
                 <label class="radio inline">
                 <input id="imgyes" type="radio" name="img" value="yes">
@@ -58,6 +58,7 @@
                     <textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C1"> </textarea>
                 </div>
                 <div id="answer-label"></div>
+                <button class="btn btn-block btn-primary" type="button" id="finish">Done</button>
             </form>
             <hr> 
             <footer>

@@ -4,7 +4,7 @@ use answerMe;
 
 create table questions(
 	qno int primary key,
-	qtext varchar(100) not null,
+	qtext varchar(1000) not null,
 	nchoices int not null,
 	answer int
 );

@@ -106,7 +106,7 @@ $Qs = explode(";", $test[0]['questions']);
         ?>
         </label>
         <label class="radio radioOptions">
-        <input type="radio" name="Q<?php echo $j";?>" value="<?php echo $k; ?>">
+        <input type="radio" name="Q<?php echo $j;?>" value="<?php echo $k; ?>">
         <?php 
                         echo $choices[$k]['choice']; 
         ?>

@@ -1,3 +1,9 @@
+function addBRtags(node){
+	var str = $(node).val();
+	var arr = str.split('\n');
+	str = arr.join('<br />');
+	$(node).val(str);
+}
 $(document).ready(function(){
 	var appendEle;
 	$('#imgyes').bind('click',function(){
@@ -34,7 +40,9 @@ $(document).ready(function(){
 			appendEle = '<option value="' + i + '">' + i + '</option>';
 			$("#correctAnswer").append(appendEle);
 		}
-	});	
-	appendEle = '<button class="btn btn-block btn-primary" type="submit" >Done</button>'; //reusing the variable
-	$("#question").append(appendEle);
+	});
+	$('#finish').bind('click',function() {
+		addBRtags('#qtext');
+		$("#question").submit();$("#qtext").val()
+	});
 });
