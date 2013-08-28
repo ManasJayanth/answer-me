@@ -46,6 +46,10 @@ $(document).ready(function(){
 				$("#correctAnswer").append(appendEle);
 			}
 			$("#placebutton").html('<button class="btn btn-block btn-primary" type="button" id="finish">Done</button>');
+			$('#finish').bind('click',function() {
+				addBRtags('#qtext');
+				$("#questionform").submit();
+			});
 		}
 	});
 	$('#finish').bind('click',function() {
