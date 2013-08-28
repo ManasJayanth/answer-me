@@ -56,7 +56,7 @@ $Qs = explode(";", $test[0]['questions']);
 </head>
 <body>
     <div class="container">
-    <h1> Welcome <?php echo $name; ?><button type="button" class="btn btn-primary pull-right" data-loading-text="Submitting...">Submit Answer</button> </h1>
+    <h1> Welcome <?php echo $name; ?><button id="done" type="button" class="btn btn-primary pull-right" data-loading-text="Submitting...">Submit Answer</button> </h1>
     <div class="container" id="containerId">
       <div id="clock">
         <div id="text"> Time left </div>

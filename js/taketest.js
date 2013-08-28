@@ -15,4 +15,7 @@ function timer() {
 
 $(document).ready(function(){
 	setInterval("timer();",1000);
+	$("#done").bind('click',function(){
+		$("#test").submit();
+	});
 });
