@@ -6,7 +6,7 @@ $(document).ready(function(){
 		data += ';';
 		data += $("#noq").val();
 		data += ';';
-		data += $("#negyes").checked ? 'on' : 'off';
+		data += $("#negyes").is(':checked') ? 'on' : 'off';
 		data += ';';
 		data += $("#time").val();
 		data += ';';
