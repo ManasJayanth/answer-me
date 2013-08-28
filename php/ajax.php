@@ -48,7 +48,7 @@ function createTest($data) {
 	$num = $pstatement->fetchColumn();
 	$Qnos = array();
 	for ($i=0; $i < $totalQs; $i++) { 
-		$temp = rand() % $num;
+		$temp = (rand() % $num) + 1;
 		$j=0;
 		while($j < sizeof($Qnos)) { 
 			if ($temp == $Qnos[$j]) {
