@@ -128,7 +128,7 @@ $Qs = explode(";", $test[0]['questions']);
 <script src="../js/jquery1.10.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
-var sec = <?php echo $test[0]['timelimit']; ?>;
+var sec = <?php echo $test[0]['timelimit']; ?> * 60;
 </script>
 <script src="../js/taketest.js"></script>
 </body>
