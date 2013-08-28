@@ -40,3 +40,15 @@ create table student (
 );
 
 insert into student values('1','abc',md5('xyz'));
+
+create table marks(
+	loginid varchar(10),
+	testid int,
+	marks int
+);
+
+create table answer(
+	loginid varchar(10),
+	testid int,
+	response varchar(500)	
+);
