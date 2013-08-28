@@ -23,26 +23,33 @@ $(document).ready(function(){
 	});
 	$("#noQ").bind('change',function() { 
 		var nChoices = $(this).val();
-		$("#choices").replaceWith('<div id="choices"> </div>');
-		for(var i = 1; i <= nChoices; ++i) {
-			appendEle = '<label>Choice ' + i + '</label>';
-			$("#choices").append(appendEle);
-			appendEle = '<textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C' + i + '"> </textarea>';
-			$("#choices").append(appendEle);
+		if (nChoices < 2) {
+			$("#errmesg").html('<div class="alert alert-block alert-error fade in"> There must atleast be two choices </div>');
+			$("#placebutton").html('');
 		}
-
-		$("#answer-label").replaceWith('<label id="answer-label">Correct Answer </label>');
-		appendEle = '<span id="answer-span"> </span>';
-		$("#answer-label").append(appendEle);
-		appendEle = '<select class="span1 btn" name="correctAnswer" id="correctAnswer"> </select>';
-		$("#answer-span").append(appendEle);
-		for(var i = 1; i <= nChoices; ++i) {
-			appendEle = '<option value="' + i + '">' + i + '</option>';
-			$("#correctAnswer").append(appendEle);
+		else {
+			$("#errmesg").html('');
+			$("#choices").replaceWith('<div id="choices"> </div>');
+			for(var i = 1; i <= nChoices; ++i) {
+				appendEle = '<label>Choice ' + i + '</label>';
+				$("#choices").append(appendEle);
+				appendEle = '<textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C' + i + '"> </textarea>';
+				$("#choices").append(appendEle);
+			}
+			$("#answer-label").replaceWith('<label id="answer-label">Correct Answer </label>');
+			appendEle = '<span id="answer-span"> </span>';
+			$("#answer-label").append(appendEle);
+			appendEle = '<select class="span1 btn" name="correctAnswer" id="correctAnswer"> </select>';
+			$("#answer-span").append(appendEle);
+			for(var i = 1; i <= nChoices; ++i) {
+				appendEle = '<option value="' + i + '">' + i + '</option>';
+				$("#correctAnswer").append(appendEle);
+			}
+			$("#placebutton").html('<button class="btn btn-block btn-primary" type="button" id="finish">Done</button>');
 		}
 	});
 	$('#finish').bind('click',function() {
 		addBRtags('#qtext');
-		$("#question").submit();$("#qtext").val()
+		$("#questionform").submit();
 	});
 });

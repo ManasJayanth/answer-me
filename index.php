@@ -24,7 +24,7 @@
                     </ul>
                 </div>
             </div>
-            <form id="question" method="post" action="php/getquestion.php" enctype='multipart/form-data'>
+            <form id="questionform" method="post" action="php/getquestion.php" enctype='multipart/form-data'>
                 <legend>
                 Question
                 </legend>
@@ -44,7 +44,7 @@
                 <label>Number of options
                 <span>
                     <select class="span1 btn" name="nChoices" id="noQ">
-                    <option value="1">1</option>
+                    <option value="1">-</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -54,11 +54,12 @@
                 </span>
                 </label>
                 <div id="choices">
-                    <label>Choice 1</label>
-                    <textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C1"> </textarea>
+                    <!-- <label>Choice 1</label>
+                    <textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C1"> </textarea> -->
                 </div>
                 <div id="answer-label"></div>
-                <button class="btn btn-block btn-primary" type="button" id="finish">Done</button>
+                <div id="errmesg"></div>
+                <div id="placebutton"></div>
             </form>
             <hr> 
             <footer>
