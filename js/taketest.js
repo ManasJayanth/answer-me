@@ -14,6 +14,14 @@ function timer() {
 }
 
 $(document).ready(function(){
+	window.onunload = function() {
+        alert("Submitting your answers");
+        var form = document.getElementsByTagName("form");
+        form[0].submit();
+    }
+    window.onbeforeunload = function() {
+        return "Navigating away";
+    }
 	setInterval("timer();",1000);
 	$("#done").bind('click',function(){
 		$("#test").submit();
