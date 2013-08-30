@@ -55,14 +55,15 @@ $Qs = explode(";", $test[0]['questions']);
 </script>
 </head>
 <body>
-    <div class="container">
-    <h1> Welcome <?php echo $name; ?><button id="done" type="button" class="btn btn-primary pull-right" data-loading-text="Submitting...">Submit Answer</button> </h1>
     <div class="container" id="containerId">
-      <div id="clock">
+        <div id="heading">
+            <h1> Welcome <?php echo $name; ?><button id="done" type="button" class="btn btn-primary pull-right" data-loading-text="Submitting...">Submit Answer</button> </h1>
+        </div>
+        <div id="clock">
         <div id="text"> Time left </div>
         <div id="time">--</div>
-      </div>
-      <form class="form-signin" id="test" action="eval.php" method="post">
+        </div>
+        <form class="form-signin" id="test" action="eval.php" method="post">
         <?php
             try {
                 for ($j=0; $j < sizeof($Qs); $j++) { 
@@ -129,6 +130,7 @@ $Qs = explode(";", $test[0]['questions']);
 <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
 var sec = <?php echo $test[0]['timelimit']; ?> * 60;
+var tid = <?php echo $test[0]['testid']; ?>;
 </script>
 <script src="../js/taketest.js"></script>
 </body>
