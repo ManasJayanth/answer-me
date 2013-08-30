@@ -17,7 +17,6 @@ function sendData(str) {
 	   success: function(data){
 	   	this.sendSuccess = true;
 	   	$("#details").replaceWith("<div id='details'></div>");
-		// $("#details").append(data.result);
 		$("#details").append("<h3 style='text-align:center'> Test Created! </h3>");
 	   	$("#details").append("<div style='text-align:center'>" + data.result + "</div>");
 	   },
