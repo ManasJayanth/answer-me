@@ -3,43 +3,6 @@ session_start();
 if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
     header ("Location: login.php");
 }
-require_once('serverspecific.php');
-$testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
-$testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-$testh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-// $sql = "SELECT name FROM student WHERE loginid = :loginid";
-// $pstatement = $testh->prepare($sql);
-// $name = "";
-// try {
-//     $success = $pstatement->execute(array(':loginid' => $_SESSION['loginid']));
-//     $name = $pstatement->fetchColumn();
-// } catch (PDOException $e) {
-//     echo "Following error was encountered <br />";
-//     echo $e->getMessage();
-// }
-/********* Retrieving Questions *******/
-$sql = "SELECT name FROM student WHERE loginid = :loginid";
-$pstatement = $testh->prepare($sql);
-$name = "";
-try {
-    $success = $pstatement->execute(array(':loginid' => $_SESSION['loginid']));
-    $name = $pstatement->fetchColumn();
-} catch (PDOException $e) {
-    echo "Following error was encountered <br />";
-    echo $e->getMessage();
-}
-
-$sql = "SELECT * FROM test WHERE testid = :testid";
-$pstatement = $testh->prepare($sql);
-$result = "";
-try {
-    $success = $pstatement->execute(array(':testid' => $_SESSION['testid']));
-    $test = $pstatement->fetchAll();
-} catch (PDOException $e) {
-    echo "Following error was encountered <br />";
-    echo $e->getMessage();
-}
-$Qs = explode(";", $test[0]['questions']);
 ?>
 <html lang="en">
 <html>
@@ -51,11 +14,39 @@ $Qs = explode(";", $test[0]['questions']);
 <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="../css/taketest.css" rel="stylesheet" media="screen">
 <link href="../css/mycsslib.css" rel="stylesheet" media="screen">
-<script type="text/javascript">
-</script>
 </head>
 <body>
     <div class="container" id="containerId">
+<?php
+require_once('serverspecific.php');
+$testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
+$testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$testh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+if (!($_COOKIE['tid'] == $_SESSION['testid'] && $_COOKIE['loginid'] == $_SESSION['loginid'])) {
+    /********* Retrieving Questions *******/
+    $sql = "SELECT name FROM student WHERE loginid = :loginid";
+    $pstatement = $testh->prepare($sql);
+    $name = "";
+    try {
+        $success = $pstatement->execute(array(':loginid' => $_SESSION['loginid']));
+        $name = $pstatement->fetchColumn();
+    } catch (PDOException $e) {
+        echo "Following error was encountered <br />";
+        echo $e->getMessage();
+    }
+
+    $sql = "SELECT * FROM test WHERE testid = :testid";
+    $pstatement = $testh->prepare($sql);
+    $result = "";
+    try {
+        $success = $pstatement->execute(array(':testid' => $_SESSION['testid']));
+        $test = $pstatement->fetchAll();
+    } catch (PDOException $e) {
+        echo "Following error was encountered <br />";
+        echo $e->getMessage();
+    }
+    $Qs = explode(";", $test[0]['questions']);
+?>
         <div id="heading">
             <h1> Welcome <?php echo $name; ?><button id="done" type="button" class="btn btn-primary pull-right" data-loading-text="Submitting...">Submit Answer</button> </h1>
         </div>
@@ -76,6 +67,9 @@ $Qs = explode(";", $test[0]['questions']);
         <label>
         <?php
                     echo $result[0]['qtext'];
+        ?>
+        </label>
+        <?php
                     /********** Checking for Images ******************/
                     $sql = "SELECT * FROM qImgs WHERE qno = :qno";
                     $pstatement = $testh->prepare($sql);
@@ -105,7 +99,6 @@ $Qs = explode(";", $test[0]['questions']);
                     }
                     for ($k=0; $k < sizeof($choices); $k++) { 
         ?>
-        </label>
         <label class="radio radioOptions">
         <input type="radio" name="Q<?php echo $j;?>" value="<?php echo $k; ?>">
         <?php 
@@ -120,7 +113,7 @@ $Qs = explode(";", $test[0]['questions']);
                 echo $e->getMessage();
             }
         ?>
-        <hr> 
+        <hr>
         <footer>
             <span class="pull-right"><a href="../index.php">Back Home</a></span>
             <span>© 2013 answerMe </span>
@@ -131,7 +124,37 @@ $Qs = explode(";", $test[0]['questions']);
 <script type="text/javascript">
 var sec = <?php echo $test[0]['timelimit']; ?> * 60;
 var tid = <?php echo $test[0]['testid']; ?>;
+var logid = <?php echo $_SESSION['loginid']; ?>;
 </script>
 <script src="../js/taketest.js"></script>
+<?php
+}
+else
+{
+    session_destroy();
+?>
+         <div class="navbar">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="../createtest.html">Create Test</a></li>
+                        <li><a href="viewdb.php">View Database</a></li>
+                        <li><a href="taketest.php">Take Test</a></li>
+                    </ul>
+                </div>
+        </div>
+        <div class="box">
+            <h2> Invalid Attempt!</h2>
+            <p> You have already attempted the test </p>
+        </div>
+        <hr>
+        <footer>
+            <span class="pull-right"><a href="../index.php">Back Home</a></span>
+            <span>© 2013 answerMe </span>
+        </footer>
+    </div>
+<?php
+}
+?>
 </body>
 </html>

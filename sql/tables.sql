@@ -40,6 +40,7 @@ create table student (
 );
 
 insert into student values('1','abc',md5('xyz'));
+insert into student values('2','zxc',md5('xyz'));
 
 create table marks(
 	loginid varchar(10),

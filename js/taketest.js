@@ -1,25 +1,15 @@
-var noTest = false;
-var noCooke = false;
 var noOfSeconds;
 
 function probeCookie() {
-	var searchName = "tid=" + tid; //signature for test taken
 	var cookies = document.cookie.split(';');
-	for(var i=0; i < cookies.length; i++) {
-    var cookie= cookies[i];
-    var ind = cookie.indexOf(searchName);
-		if (ind != -1) {
-			return 'testTaken';
-		}
-	}
 	var searchName = "timeLeft=";
 	for(var i=0; i < cookies.length; i++) {
-    var cookie= cookies[i];
-    var ind = cookie.indexOf(searchName);
-		if (ind != -1) {
-			var val = cookie.substring(ind+9,cookie.length);
-			return val;
-		}
+	    var cookie= cookies[i];
+	    var ind = cookie.indexOf(searchName);
+			if (ind != -1) {
+				var val = cookie.substring(ind+9,cookie.length);
+				return val;
+			}
 	}
 	return 'noCookie';
 }
@@ -50,7 +40,7 @@ function timer() {
 }
 
 function startTest() {
-    setInterval("timer();",1000);
+	setInterval("timer();",1000);
 }
 
 function finishTest() {
@@ -58,6 +48,9 @@ function finishTest() {
 	var expires = new Date();
 	expires.setTime(expires.getTime() + 1 * 24 * 60 * 60 * 1000);
 	document.cookie = "tid=" + tid + "; expires=" + expires.toGMTString() + "; path=/";
+	document.cookie = "loginid=" + logid + "; expires=" + expires.toGMTString() + "; path=/";
+	var form = document.getElementsByTagName("form");
+	form[0].submit();
 }
 
 function checkCookie() {
@@ -105,77 +98,37 @@ function requestCookieEnable() {
 	box.appendChild(p);
 }
 
-function showNoTest() {
-	var node = document.getElementById("containerId");
-	node.removeChild(document.getElementById("clock"));
-	$("#heading").html('<div class="navbar">' +
-			            '<div class="navbar-inner">' +
-			                '<ul class="nav">' +
-			                    '<li><a href="../index.php">Home</a></li>' +
-			                    '<li><a href="../createtest.html">Create Test</a></li>' +
-			                    '<li><a href="viewdb.php">View Database</a></li>' +
-			                    '<li class="active"><a href="taketest.php">Take Test</a></li>' +
-			                '</ul>' +
-			                '</ul>' +
-			            '</div>' +
-			        '</div>');
-	node = document.getElementById("test");
-	while (node.firstChild)
-	node.removeChild(node.firstChild);
-	var box = document.createElement("div");
-	box.id = "box";
-	node.appendChild(box);
-	var h2 = document.createElement("h2");
-	h2.appendChild(document.createTextNode("Invalid Attempt!"));
-	box.appendChild(h2);
-	var p = document.createElement("p");
-	p.appendChild(document.createTextNode("You have already attempted the test"));
-	box.appendChild(p);
-}
-
-// function timer() {
-// 		var mins = Math.floor(sec / 60);
-// 		var secs_left = sec % 60;
-// 		var timetext = mins + ":" + secs_left;
-// 		var node = document.getElementById("time");
-// 		while (node.firstChild)
-// 		node.removeChild(node.firstChild);
-// 		node.appendChild(document.createTextNode(timetext));
-// 		sec = sec - 1;
-// 		if(sec == -1) {
-// 			var form = document.getElementsByTagName("form");
-// 			//form[0].submit();
-// 		}
-// }
-
-$(document).ready(function(){
+$(document).ready(function(){		
+//******** Event handlers ***************//
+	$("#done").bind('click',function(){
+		finishTest();
+	});
 	window.onunload = function() {
-        alert("Submitting your answers");
-        var form = document.getElementsByTagName("form");
-        form[0].submit();
+        /*
+		This could be used to prevent user from reloading. However, this couldbe inconvenient at times when images aren't loaded
+		properly. Hence commented.
+
+        finishTest();
+        */
+
     }
     window.onbeforeunload = function() {
         return "Navigating away";
     }
+
+//******** Test ***************//
 	var timeLeft = probeCookie();
 	var cookieEnabled = checkCookie();
 	if (cookieEnabled == 'not-enabled') {
 		requestCookieEnable();
 	}
-	else if(timeLeft == 'testTaken') {
-		showNoTest();
-	}
-	else { 
+	else {
 		if(timeLeft != 'noCookie') {
 			noOfSeconds = timeLeft;
 		}
-		else
-			noOfSeconds = 3;//sec;
+		else {
+			noOfSeconds = sec;
+		}
 		startTest();
 	}
-
-	//******** Event handlers ***************//
-	$("#done").bind('click',function(){
-		$("#test").submit();
-	});
 });
