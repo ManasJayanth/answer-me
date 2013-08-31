@@ -38,3 +38,9 @@ padding-top: 40px;
 padding-bottom: 40px;
 background-color: #f5f5f5;
 }
+
+#mesg {
+	text-align: left;
+	margin-top: 4px;
+	margin-bottom: 2px;
+}

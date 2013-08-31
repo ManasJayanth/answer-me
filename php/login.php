@@ -78,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		    </form>
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<div id="mesg" class="pull-left">
+				<div id="mesg">
 		    	</div>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 			</div>
 		</div>
 
