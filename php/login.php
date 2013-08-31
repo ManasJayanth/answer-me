@@ -68,32 +68,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			</div>
 			<div class="modal-body">
 				<form class="form-signin" method="POST" action="login.php">
-		        <input class="input-block-level" id="loginId" placeholder="Preferred Login ID (consisting of characters and numbers)" type="text" name="loginid">
+		        <input class="input-block-level" id="modalloginId" placeholder="Preferred Login ID (consisting of characters and numbers)" type="text" name="loginid">
 		        <span class="help-block" id="availmesg">
 		        </span>
 		        <input class="input-block-level" id="name" placeholder="Your Full Name" type="text" name="testid">
-		        <span class="help-block" id="notnullmesg">
-		        </span>
-		        <input class="input-block-level" id="pass" placeholder="Desired Password" type="password" name="password">
-		        <input class="input-block-level" id="rpass" placeholder="Re-enter password for verification" type="password" name="password">
-		        <span class="help-block" id="passmatchmesg">
-		        </span>
-		        <span class="help-block" id="availmesg">
-		        </span>
+		        <input class="input-block-level" id="password" placeholder="Desired Password" type="password" name="password">
+		        <input class="input-block-level" id="rpassword" placeholder="Re-enter password for verification" type="password" name="password">
 		        <button class="btn btn-block btn-primary" type="button" id="register">Register</button>
 		    </form>
-		    <div id="mesg" class="alert">
-		    	<button type="button" class="close" data-dismiss="alert">&times;</button>
-		    	You are registered! <i class="icon-thumbs-up"></i>
-		    </div>
 			</div>
-			<div id="buttoncummesg">
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<div id="mesg" class="pull-left">
+		    	</div>
 			</div>
 		</div>
-
 
 	    <div id="errmesg">
 	    </div>
@@ -113,44 +102,44 @@ var passok = false;
 
 $(document).ready(function () {
 	/*** Empty all modal fields ***/
-	$('#loginId').val('');
+	$('#modalloginId').val('');
 	$('#name').val('');
-	$('#pass').val('');
-	$('#rpass').val('');
+	$('#password').val('');
+	$('#rpassword').val('');
 
 	var newReq = new AjaxReq();
-	$('#loginId').on('change',function(){
+	$('#modalloginId').on('change',function(){
 		newReq.check($('#name').val());
 	});
-	$('#name').on('change',function(){
-		if((this).val() == '') {
-			$("#notnullmesg").html('<span class="alert alert-error help-block" id="availmesg">' +
-	        							'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-	        							'Name field cannot be empty' +
-	       						 	'</span>');
-			nameok = false;
-		}
-		else{
-			nameok = true;
-			$("#notnullmesg").html(';l;lm;');
-		}
-	});
-	$('#rpass').on('change',function(){
-		if ($(this).val() != $('#pass').val()) {
-			$("#passmatchmesg").html('<span class="alert alert-error help-block" id="availmesg">' +
-	        							'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-	        							'Passwords don\'t match' +
-	       						 	'</span>');
-			passok = false;
+	$('#register').on('click',function(){
+		if ($('#password').val() == $('#rpassword').val()) {
+			if ($('#name').val() != '') {
+				if ($('#password').val() != '') {
+					var data = '';
+					data += $('#modalloginId').val() + ';';
+					data += $('#name').val() + ';';
+					data += $('#password').val();
+					newReq.send(data);
+				}
+				else {
+				$('#mesg').html('<div class="alert-error">' + 
+	    								'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+	    								'Password field mustnot be empty' +
+	    							'</div>');
+				}
+			}
+			else {
+				$('#mesg').html('<div class="alert-error">' + 
+	    								'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+	    								'Name field mustnot be empty' +
+	    							'</div>');
+			}
 		}
 		else {
-			passok = true;
-			$("#passmatchmesg").html('');
-		}
-	});
-	$('#register').on('click',function(){
-		if(nameok && passok){
-			alert('registered');
+			$('#mesg').html('<div class="alert-error">' + 
+    								'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+    								'Passwords don\'t match' +
+    							'</div>');
 		}
 	});
 });

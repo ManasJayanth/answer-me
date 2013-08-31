@@ -42,6 +42,15 @@ function createTest($data) {
 	$num = $pstatement->fetchColumn();
 	return 'Your TestID : ' . $num;
 }
+
+function checkAvailability($data)
+{
+	return true;
+}
+function registerUser($data)
+{
+	return true;
+}
 $function = $_POST['function'];    
 $response = array();
 $data = "";
@@ -51,11 +60,13 @@ switch($function) {
 	 case('check'):
 		$data = $_POST['data'];
 		$data = explode(";", $data);
-		$response['result'] = false;//createTest($data);
+		$response['result'] = checkAvailability($data);
 		break;	
 	
-	 case('recData'):
-		$response['result'] = $result;
+	 case('send'):
+	 	$data = $_POST['data'];
+		$data = explode(";", $data);
+		$response['result'] = registerUser($data);
 		break;
 }    
 echo json_encode($response);
