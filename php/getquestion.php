@@ -53,7 +53,7 @@ if ($_FILES)
 {
 	$fname = $_FILES['filename']['name'];
 	//$fname = $parentDir . 'Qimgs/' . $fname;
-	$fname = 'Qimgs/' . $fname;
+	$fname = 'php/Qimgs/' . $fname;
 	move_uploaded_file($_FILES['filename']['tmp_name'], $fname);
 	$imgpresent = true;
 }
