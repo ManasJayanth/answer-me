@@ -112,9 +112,9 @@ $(document).ready(function(){
         */
 
     }
-    window.onbeforeunload = function() {
-        return "Navigating away";
-    }
+    // window.onbeforeunload = function() {
+    //     return "Navigating away";
+    // }
 
 //******** Test ***************//
 	var timeLeft = probeCookie();
