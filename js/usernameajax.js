@@ -15,13 +15,17 @@ function check(str) {
 	   success: function(data){
 	   	var failorsucc;
 	   	var text;
-	   	if (data.result) {
+	   	if (data.result == 'success') {
 	   		failorsucc = 'alert-success';
 	   		text = 'Username Available!';
 	   	}
-	   	else {
+	   	else if (data.result == 'failure') {
 	   		failorsucc = 'alert-error';
-	   		text = 'Username unavailable';
+	   		text = 'This username is already taken. Please try another';
+	   	}
+	   	else{
+	   		failorsucc = 'alert-error';
+	   		text = data;	
 	   	}
 	   	$("#availmesg").html('<span class="alert ' + failorsucc + ' help-block" id="availmesg">' +
 	        							'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
@@ -47,13 +51,13 @@ function send (str) {
 	   success: function(data){
 	   	var failorsucc;
 	   	var text;
-	   	if (data.result) {
+	   	if (data.result == 'success') {
 	   		failorsucc = 'alert-success';
 	   		text = 'Your registration has been successful! You can now close this modal window and proceed with signing in.';
 	   	}
 	   	else {
 	   		failorsucc = 'alert-error';
-	   		text = 'Some error occured';
+	   		text = 'Error occured: ' + data.result;
 	   	}
 	   	$("#mesg").html('<span class="alert ' + failorsucc + ' help-block" id="availmesg">' +
 	        							'<button type="button" class="close" data-dismiss="alert">&times;</button>' +

@@ -45,11 +45,40 @@ function createTest($data) {
 
 function checkAvailability($data)
 {
-	return true;
+	include('serverspecific.php');
+	$testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
+	$testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	$testh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$sql = "SELECT COUNT(*) FROM student WHERE loginid = :loginid";
+	$pstatement = $testh->prepare($sql);
+	try {
+		$success = $pstatement->execute(array(':loginid' => $data));
+		$num = $pstatement->fetchColumn();
+		if ($num == 0) {
+			return 'success';
+		}
+		else
+		{
+			return 'failure';
+		}
+	} catch (PDOException $e) {
+		return "Following error was encountered" . $e->getMessage();
+	}
 }
 function registerUser($data)
 {
-	return true;
+	include('serverspecific.php');
+	$testh = new PDO ("mysql:host=$server;dbname=$database", $db_user, $db_pass);
+	$testh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	$testh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$sql = "INSERT INTO student VALUES(:loginid, :name, :password)";
+	$pstatement = $testh->prepare($sql);
+	try {
+		$success = $pstatement->execute(array(':loginid' => $data[0], ':name' => $data[1], ':password' => md5($data[2])));
+	} catch (PDOException $e) {
+		return "Following error was encountered" . $e->getMessage();
+	}
+	return 'success';
 }
 $function = $_POST['function'];    
 $response = array();
@@ -59,9 +88,8 @@ $result = "";
 switch($function) {
 	 case('check'):
 		$data = $_POST['data'];
-		$data = explode(";", $data);
 		$response['result'] = checkAvailability($data);
-		break;	
+		break;
 	
 	 case('send'):
 	 	$data = $_POST['data'];

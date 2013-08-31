@@ -109,7 +109,17 @@ $(document).ready(function () {
 
 	var newReq = new AjaxReq();
 	$('#modalloginId').on('change',function(){
-		newReq.check($('#name').val());
+		var uname = $(this).val();
+		if (uname == '') {
+			$("#availmesg").html('<span class="alert alert-error help-block" id="availmesg">' +
+        							'<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+        							'Username field cannot be empty' +
+       						 	'</span>');
+		}
+		else
+		{
+			newReq.check(uname);
+		}
 	});
 	$('#register').on('click',function(){
 		if ($('#password').val() == $('#rpassword').val()) {
@@ -147,7 +157,7 @@ $(document).ready(function () {
 <script type="text/javascript">
 var rAlert = <?php echo $raiseAlert ?>;
 if (rAlert) {
-	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Pasword! </div>');
+	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Username-Pasword combination! </div>');
 };
 </script>
 </body>
