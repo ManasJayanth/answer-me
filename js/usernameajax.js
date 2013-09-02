@@ -4,6 +4,7 @@ function AjaxReq(){
 }
 
 function check(str) {
+	$("#availmesg").html('<img style="margin-left: 50%" src="../img/ajax-loader.gif"  alt="Checking..." />');
 	$.ajax({
 	   type: "POST",
 	   url: "usernameajax.php",
@@ -40,6 +41,7 @@ function check(str) {
 }
 
 function send (str) {
+	$("#mesg").html('<img src="../img/ajax-loader.gif"  alt="" /> <i>Registering...</i>');
 	$.ajax({
 	   type: "POST",
 	   url: "usernameajax.php",

@@ -6,6 +6,7 @@ function AjaxReq(){
 }
 
 function sendData(str) {
+	$("#details").html('<img style="margin-left: 50%" src="img/ajax-loader.gif"  alt="Creating..." />');
 	$.ajax({
 	   type: "POST",
 	   url: "php/ajax.php",
