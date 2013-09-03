@@ -47,8 +47,14 @@ $(document).ready(function(){
 			}
 			$("#placebutton").html('<button class="btn btn-block btn-primary" type="button" id="finish">Done</button>');
 			$('#finish').bind('click',function() {
-				addBRtags('#qtext');
-				$("#questionform").submit();
+				if ($("#qtext").val() == '') {
+					$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Question text field cannot be empty </div>');
+				}
+				else
+				{
+					addBRtags('#qtext');
+					$("#questionform").submit();
+				}
 			});
 		}
 	});
