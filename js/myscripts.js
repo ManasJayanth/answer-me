@@ -1,11 +1,36 @@
+var nChoices = 0;
 function addBRtags(node){
 	var str = $(node).val();
 	var arr = str.split('\n');
 	str = arr.join('<br />');
 	$(node).val(str);
 }
+
+submitData = function() {
+	var emptychoices = false;
+	for (var i = 1; i <= nChoices; i++) {
+		if ($("#C" + i).val() == '') {
+			emptychoices = true;
+			break;
+		}
+	}
+	if ($("#qtext").val() == '') {
+		$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Question text field cannot be empty </div>');
+	}
+	else if (emptychoices) {
+		$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Choices field cannot be empty </div>');
+	}
+	else
+	{
+		addBRtags('#qtext');
+		$("#questionform").submit();
+	}
+}
+
 $(document).ready(function(){
 	var appendEle;
+	$("#qtext").val('');
+	$("#noQ").val('');
 	$('#imgyes').bind('click',function(){
 		appendEle = '<div class="fileupload fileupload-new" data-provides="fileupload">' +
 						'<div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>' +
@@ -22,7 +47,7 @@ $(document).ready(function(){
 		$("#imgsource").replaceWith('<div id="imgsource"> </div>');
 	});
 	$("#noQ").bind('change',function() { 
-		var nChoices = $(this).val();
+		nChoices = $(this).val();
 		if (nChoices < 2) {
 			$("#errmesg").html('<div class="alert alert-block alert-error fade in"> There must atleast be two choices </div>');
 			$("#placebutton").html('');
@@ -33,7 +58,7 @@ $(document).ready(function(){
 			for(var i = 1; i <= nChoices; ++i) {
 				appendEle = '<label>Choice ' + i + '</label>';
 				$("#choices").append(appendEle);
-				appendEle = '<textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C' + i + '"  id="C' + i + '"> </textarea>';
+				appendEle = '<textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C' + i + '"  id="C' + i + '"></textarea>';
 				$("#choices").append(appendEle);
 			}
 			$("#answer-label").replaceWith('<label id="answer-label">Correct Answer </label>');
@@ -46,20 +71,8 @@ $(document).ready(function(){
 				$("#correctAnswer").append(appendEle);
 			}
 			$("#placebutton").html('<button class="btn btn-block btn-primary" type="button" id="finish">Done</button>');
-			$('#finish').bind('click',function() {
-				if ($("#qtext").val() == '') {
-					$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Question text field cannot be empty </div>');
-				}
-				else
-				{
-					addBRtags('#qtext');
-					$("#questionform").submit();
-				}
-			});
+			$('#finish').bind('click',submitData);
 		}
 	});
-	$('#finish').bind('click',function() {
-		addBRtags('#qtext');
-		$("#questionform").submit();
-	});
+	$('#finish').bind('click',submitData);
 });
