@@ -33,7 +33,7 @@ $(document).ready(function(){
 			for(var i = 1; i <= nChoices; ++i) {
 				appendEle = '<label>Choice ' + i + '</label>';
 				$("#choices").append(appendEle);
-				appendEle = '<textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C' + i + '"> </textarea>';
+				appendEle = '<textarea class="input-block-level" rows="4" placeholder="Enter your choice here..." name="C' + i + '"  id="C' + i + '"> </textarea>';
 				$("#choices").append(appendEle);
 			}
 			$("#answer-label").replaceWith('<label id="answer-label">Correct Answer </label>');
