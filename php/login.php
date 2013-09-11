@@ -50,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
     <div class="container">
-    	<form class="form-signin" method="POST" action="login.php">
+    	<form class="form-signin" method="POST" action="login.php" id="loginform">
 	        <h1 style="font-weight: bolder"> AnswerMe </h1>
 	        <input class="input-block-level" id="loginId" placeholder="Login ID" type="text" name="loginid">
 	        <input class="input-block-level" id="testid" placeholder="Test ID" type="text" name="testid">
 	        <input class="input-block-level" id="pass" placeholder="Password" type="password" name="password">
-	        <button class="btn btn-block btn-primary" type="submit" id="starttest">Take Test</button>
+	        <button class="btn btn-block btn-primary" type="button" id="starttest">Take Test</button>
 	        <br />
 	        <a href="#myModal" role="button" data-toggle="modal">Dont have a Login ID yet?</a>
 	    </form>
@@ -101,6 +101,21 @@ var nameok = false;
 var passok = false;
 
 $(document).ready(function () {
+	$('#starttest').on('click',function(){
+		if ($('#loginId').val() != '') {
+			if ($('#pass').val() != '') {
+				if ($('#testid').val() != '') {
+					$('#loginform').submit();
+				} else{
+					$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Test ID field cannot be empty </div>');
+				}
+			} else{
+				$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Password field cannot be empty </div>');
+			}
+		} else{
+			$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Login ID field cannot be empty </div>');
+		}
+	});
 	/*** Empty all modal fields ***/
 	$('#modalloginId').val('');
 	$('#name').val('');
