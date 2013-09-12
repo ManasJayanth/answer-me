@@ -168,8 +168,6 @@ $(document).ready(function () {
 		}
 	});
 });
-</script>
-<script type="text/javascript">
 var rAlert = <?php echo $raiseAlert ?>;
 if (rAlert) {
 	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Username-Pasword combination! </div>');
