@@ -96,5 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/usernameajax.js"></script>
 <script src="../js/login.js"></script>
+<script type="text/javascript">
+var rAlert = <?php echo $raiseAlert ?>;
+if (rAlert) {
+	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Username-Pasword combination! </div>');
+};
+</script>
 </body>
 </html>
