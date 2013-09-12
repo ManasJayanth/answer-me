@@ -2,17 +2,17 @@ $(document).ready(function(){
 	var reqTest = new AjaxReq();
 	$("#done").bind('click',function(){
 		if ($('#noq').val() == '') {
-			alert('No of questions field cannot be empty');
+			$("#details").html('<div class="alert alert-block alert-error fade in"> No of questions field cannot be empty </div>');
 		} else if ($('#tname').val() == ''){
-			alert('Test Name field cannot be empty');
+			$("#details").html('<div class="alert alert-block alert-error fade in"> Test Name field cannot be empty </div>');
 		}else if ($('#time').val() == '') {
-			alert('Time field cannot be empty');
+			$("#details").html('<div class="alert alert-block alert-error fade in"> Time field cannot be empty </div>');
 		} else{
 			if (isNaN($('#noq').val())) {
-				alert('No of questions is not a valid number');
+				$("#details").html('<div class="alert alert-block alert-error fade in"> No of questions is not a valid number </div>');
 			} else{
 				if (isNaN($('#time').val())) {
-					alert('Time specified is not a valid number');
+					$("#details").html('<div class="alert alert-block alert-error fade in"> Time specified is not a valid number </div>');
 				} else{
 					var data = "";
 					data += $("#tname").val();
