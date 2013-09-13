@@ -22,8 +22,6 @@ create table qImgs(
 	imgname varchar(100)
 );
 
-
-
 create table test(
 	testid int primary key AUTO_INCREMENT,
 	testname varchar(50),
