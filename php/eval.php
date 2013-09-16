@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $AWARDED = 2;
     $PENALISED = 1;
     for ($i=0; $i < $noQuestions; $i++) {
-        if ($responses[$i] == "") {
+        if ($responses[$i] == "*") {
              
         } 
         else if ($responses[$i] == $answers[$i]) {

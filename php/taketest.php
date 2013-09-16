@@ -107,6 +107,9 @@ if (!($_COOKIE['tid'] == $_SESSION['testid'] && $_COOKIE['loginid'] == $_SESSION
         </label>
         <?php
                     }
+        ?>
+        <input style='visibility: hidden' type='radio' name='Q<?php echo $j;?>' value='*' checked>
+        <?php
                 }
             } catch (PDOException $e) {
                 echo "Following error was encountered <br />";
@@ -125,6 +128,8 @@ if (!($_COOKIE['tid'] == $_SESSION['testid'] && $_COOKIE['loginid'] == $_SESSION
 var sec = <?php echo $test[0]['timelimit']; ?> * 60;
 var tid = <?php echo $test[0]['testid']; ?>;
 var logid = <?php echo $_SESSION['loginid']; ?>;
+
+var qs = <?php echo sizeof($Qs) ?>;
 </script>
 <script src="../js/taketest.js"></script>
 <?php
