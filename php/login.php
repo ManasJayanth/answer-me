@@ -1,5 +1,6 @@
 <?php
-$raiseAlert = "false";
+$invalidUID = "false";
+$invalidTestID = "false";
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	require_once('serverspecific.php');
 	$loginid = $_POST['loginid'];
@@ -13,8 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$pstatement = $testh->prepare($sql);
 	try {
 		$success = $pstatement->execute(array(':loginid' => $loginid,':pword' => $pword));
-		$num = $pstatement->fetchColumn();
-		if ($num == 1) {
+		$numUID = $pstatement->fetchColumn();
+
+		$sql = "SELECT COUNT(*) FROM test WHERE testid = :testid";
+	    $pstatement = $testh->prepare($sql);
+	    $success = $pstatement->execute(array(':testid' => $testid));
+	    $numTID = $pstatement->fetchColumn();
+		if ($numUID == 1 && $numTID == 1) {
 			session_start();
 			$_SESSION['login'] = "1";
 			$_SESSION['loginid'] = $loginid;
@@ -27,7 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			session_start();
 			$_SESSION['login'] = "";
 			// echo "fail";
-			$raiseAlert = "true";
+			if ($numUID != 1) {
+				$invalidUID = "true";
+			}
+			if ($numTID != 1) {
+				$invalidTestID = "true";
+			}
 		}
 	} catch (PDOException $e) {
 		echo "Following error was encountered <br />";
@@ -97,9 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <script src="../js/usernameajax.js"></script>
 <script src="../js/login.js"></script>
 <script type="text/javascript">
-var rAlert = <?php echo $raiseAlert ?>;
+var rAlert = <?php echo $invalidUID ?>;
+var invalTID = <?php echo $invalidTestID ?>;
 if (rAlert) {
-	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Username-Pasword combination! </div>');
+	$("#errmesg").html('<div class="alert alert-block alert-error fade in"> Invalid Username-Pasword combination! </div>');
+}
+if (invalTID) {
+	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Test ID </div>');	
 };
 </script>
 </body>
