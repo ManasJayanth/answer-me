@@ -82,8 +82,8 @@ $result = $pstatement->fetchAll();
             <span>© 2013 answerMe </span>
         </footer>
     </div>
-<script src="../js/jquery-1.6.2.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/lib/jquery-1.6.2.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
 <script src="../js/ajax.js"></script>
 <script src="../js/createtest.js"></script>
 </body>

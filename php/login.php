@@ -103,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	        <span>© 2013 answerMe </span>
 	    </footer>
     </div>
-<script src="../js/jquery1.10.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/lib/jquery1.10.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
 <script src="../js/usernameajax.js"></script>
 <script src="../js/login.js"></script>
 <script type="text/javascript">

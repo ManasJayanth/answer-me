@@ -122,8 +122,8 @@ if (!($_COOKIE['tid'] == $_SESSION['testid'] && $_COOKIE['loginid'] == $_SESSION
             <span>© 2013 answerMe </span>
         </footer>
     </div>
-<script src="../js/jquery1.10.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/lib/jquery1.10.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
 <script type="text/javascript">
 var sec = <?php echo $test[0]['timelimit']; ?> * 60;
 var tid = <?php echo $test[0]['testid']; ?>;

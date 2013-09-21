@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		<footer>
 					<span class="pull-right"><a href="../index.php">Back Home</a></span>
 					<span>© 2013 answerMe </span>
-			</footer>
+		</footer>
 	</div>
 </body>
 </html>
