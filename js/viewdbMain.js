@@ -13,5 +13,5 @@ require.config({
 require([
     'jquery', 'bootstrap'
 ], function(jquery,bootstrap) {
-    console.log('Jquery and Bootstrap loaded');
+    console.log('viewdb.php js dependencies loaded');
 })
