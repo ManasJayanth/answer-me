@@ -68,11 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	        <input class="input-block-level" id="pass" placeholder="Password" type="password" name="password">
 	        <button class="btn btn-block btn-primary" type="button" id="starttest">Take Test</button>
 	        <br />
-	        <a href="#myModal" role="button" data-toggle="modal">Dont have a Login ID yet?</a>
+	        <a href="#signupModal" role="button" data-toggle="modal">Dont have a Login ID yet?</a>
 	    </form>
 
 		<!-- Modal -->
-		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="signupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h2 id="myModalLabel">Sign Up!</h2>
