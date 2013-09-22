@@ -1,4 +1,4 @@
-function AjaxReq(){
+AjaxReq = function (){
 	this.sendSuccess = false;
 	this.recSuccess = false;
 	this.send = sendData;
