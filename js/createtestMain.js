@@ -20,6 +20,6 @@ require.config({
 
 require([
     'jquery', 'bootstrap','ajaxcreatetest','createtest'
-], function(jquery,bootstrap) {
+], function(jquery,bootstrap,ajaxcreatetest,createtest) {
     console.log('createtest.html js dependencies loaded');
 })
