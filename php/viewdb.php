@@ -83,7 +83,5 @@ $result = $pstatement->fetchAll();
         </footer>
     </div>
 <script data-main="../js/viewdbMain" src="../js/lib/require.js"></script>
-<!-- <script src="../js/lib/jquery1.10.js"></script>
-<script src="../js/lib/bootstrap.min.js"></script>
- --></body>
+</body>
 </html>
