@@ -39,6 +39,27 @@ $result = $pstatement->fetchAll();
             </div>
         </div>
         <div id="details">
+
+
+<button data-toggle="modal" href="#myModal" type="button" class="btn btn-primary btn-lg">Link</button>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Modal header</h3>
+</div>
+<div class="modal-body">
+<p>One fine body…</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button class="btn btn-primary">Save changes</button>
+</div>
+</div>
+
+
+
         <table class="table table-bordered table-striped table-condensed table-hover">
             <caption> </caption>
             <thead>
@@ -82,9 +103,8 @@ $result = $pstatement->fetchAll();
             <span>© 2013 answerMe </span>
         </footer>
     </div>
-<script src="../js/lib/jquery-1.6.2.min.js"></script>
+<script data-main="../js/viewdbMain" src="../js/lib/require.js"></script>
+<!-- <script src="../js/lib/jquery1.10.js"></script>
 <script src="../js/lib/bootstrap.min.js"></script>
-<script src="../js/ajax.js"></script>
-<script src="../js/createtest.js"></script>
-</body>
+ --></body>
 </html>
