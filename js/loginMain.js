@@ -3,7 +3,6 @@ require.config({
 		'jquery': 'lib/jquery',
 		'bootstrap': 'lib/bootstrap',
 		'usernameajax': 'usernameajax',
-		'login': 'login',
 		'loginerror': 'loginerror'
 	},
 	shim: {
