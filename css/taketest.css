@@ -29,11 +29,11 @@ font-size: 20px;
 line-height: 2em;
 }
 body {
-background: url('img/testbackground.jpg');
+background: url('../img/testbackground.jpg');
 }
 form {
 background-color: white;
-/*padding: 20px 50px 20px 50px;*/
+padding: 20px 50px 20px 50px;
 }
 legend {
 font-size: 30px;

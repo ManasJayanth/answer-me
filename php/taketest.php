@@ -7,7 +7,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 <html lang="en">
 <html>
 <head>
-<title>answerMe &middot; Home</title>
+<title>answerMe &middot; Test Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <!-- Bootstrap -->
@@ -122,16 +122,16 @@ if (!($_COOKIE['tid'] == $_SESSION['testid'] && $_COOKIE['loginid'] == $_SESSION
             <span>© 2013 answerMe </span>
         </footer>
     </div>
-<script src="../js/lib/jquery1.10.js"></script>
-<script src="../js/lib/bootstrap.min.js"></script>
+<script data-main="../js/taketestMain" src="../js/lib/require.js"> </script>
 <script type="text/javascript">
 var sec = <?php echo $test[0]['timelimit']; ?> * 60;
 var tid = <?php echo $test[0]['testid']; ?>;
-var logid = <?php echo $_SESSION['loginid']; ?>;
-
+var logid = <?php echo "'" . $_SESSION['loginid'] . "'"; ?>;
 var qs = <?php echo sizeof($Qs) ?>;
 </script>
-<script src="../js/taketest.js"></script>
+<!--<script src="../js/lib/jquery1.10.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/taketest.js"></script>-->
 <?php
 }
 else
