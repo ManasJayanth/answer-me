@@ -3,7 +3,8 @@ require.config({
 		'jquery': 'lib/jquery',
 		'bootstrap': 'lib/bootstrap',
 		'usernameajax': 'usernameajax',
-		'login': 'login'
+		'login': 'login',
+		'loginerror': 'loginerror'
 	},
 	shim: {
 		'bootstrap': {
@@ -12,13 +13,16 @@ require.config({
 		'usernameajax': {
 			deps: ['jquery'],
 			exports: 'AjaxReq'
+		},
+		'loginerror': {
+			deps: ['jquery']
 		}
 	}
 });
 
 require([
-    'jquery', 'bootstrap','ajaxcreatetest'
-], function(jquery,bootstrap,usernameajax) {
+    'jquery', 'bootstrap','usernameajax'
+], function(jquery,bootstrap,usernameajax,loginerror) {
     console.log('login.php js dependencies loaded');
     //var idok = false;
 	var nameok = false;

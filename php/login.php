@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <html lang="en">
 <html>
 <head>
-<title>answerMe &middot; Home</title>
+<title>answerMe &middot; Log In</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <!-- Bootstrap -->
@@ -103,6 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	        <span>© 2013 answerMe </span>
 	    </footer>
     </div>
+<script data-main="../js/loginMain" src="../js/lib/require.js"> </script>
+<script type="text/javascript">
+	var rAlert = <?php echo $invalidUID ?>;
+	var invalTID = <?php echo $invalidTestID ?>;
+</script>
+</body>
+</html>
+<!--
 <script src="../js/lib/jquery1.10.js"></script>
 <script src="../js/lib/bootstrap.min.js"></script>
 <script src="../js/usernameajax.js"></script>
@@ -117,5 +125,4 @@ if (invalTID) {
 	$("#errmesg").append('<div class="alert alert-block alert-error fade in"> Invalid Test ID </div>');	
 };
 </script>
-</body>
-</html>
+-->
