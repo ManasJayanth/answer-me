@@ -21,7 +21,7 @@ require.config({
 });
 
 require([
-    'jquery', 'bootstrap','usernameajax'
+    'jquery', 'bootstrap','usernameajax','loginerror'
 ], function(jquery,bootstrap,usernameajax,loginerror) {
     console.log('login.php js dependencies loaded');
     //var idok = false;
@@ -95,5 +95,6 @@ require([
 	    							'</div>');
 			}
 		});
+		loginerror.checkLoginErrors();
 	});
 });
